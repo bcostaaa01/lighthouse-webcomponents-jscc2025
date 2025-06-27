@@ -51,3 +51,16 @@ jobs:
           uploadArtifacts: true
           temporaryPublicStorage: true
           configPath: './lighthouserc.json'
+          
+      - name: Set artifact name
+        run: |
+          ARTIFACT_NAME="lighthouse-results"
+          # Remove any accidental whitespace or control characters
+          ARTIFACT_NAME=$(echo "$ARTIFACT_NAME" | tr -d '[:space:]')
+          echo "ARTIFACT_NAME=$ARTIFACT_NAME" >> $GITHUB_ENV
+          
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: '.lighthouseci'
