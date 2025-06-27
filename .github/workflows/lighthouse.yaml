@@ -51,9 +51,3 @@ jobs:
           uploadArtifacts: true
           temporaryPublicStorage: true
           configPath: './lighthouserc.json'
-          
-      - name: Save Lighthouse report
-        uses: actions/upload-artifact@v4
-        with:
-          name: lighthouse-data
-          path: '.lighthouseci'
