@@ -6,22 +6,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Setup Node v18
+      
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 18
           
       - name: Install dependencies
-        working-directory: ./web-components
         run: npm ci
         
       - name: Build project
-        working-directory: ./web-components
         run: npm run build
         
       - name: Start preview server
-        working-directory: ./web-components
         run: npm run preview -- --host 0.0.0.0 --port 4173 &
         
       - name: Wait for server
